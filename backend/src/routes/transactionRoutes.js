@@ -5,7 +5,7 @@ import {
   deleteTransaction,
   updateTransaction,
 } from '../controllers/transactionController.js';
-import { verifyToken } from '../middleware/auth.js'; // Assuming auth middleware exists
+import { verifyToken } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 

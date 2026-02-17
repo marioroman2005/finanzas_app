@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import Header from '../components/layout/Header';
 import Card from '../components/ui/Card';
@@ -6,11 +7,14 @@ import Button from '../components/ui/Button';
 import api from '../api/axios';
 import AccountCard from '../components/accounts/AccountCard';
 import CreateAccountModal from '../components/accounts/CreateAccountModal';
+import TransactionItem from '../components/transactions/TransactionItem';
 
 const Dashboard = () => {
     const { user, logout } = useAuth();
+    const navigate = useNavigate();
     const [balance, setBalance] = useState([]);
     const [accounts, setAccounts] = useState([]);
+    const [transactions, setTransactions] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [refreshKey, setRefreshKey] = useState(0);
 
@@ -25,6 +29,8 @@ const Dashboard = () => {
                 setBalance(balanceRes.data);
                 const accountsRes = await api.get('/accounts');
                 setAccounts(accountsRes.data);
+                const transactionsRes = await api.get('/transactions');
+                setTransactions(transactionsRes.data.slice(0, 5)); // Get last 5
             } catch (error) {
                 console.error('Error fetching dashboard data:', error);
             }
@@ -53,9 +59,14 @@ const Dashboard = () => {
                         <h3 className="font-bold text-lg">Cuentas</h3>
                         <p className="text-gray-500">Gestiona tus fuentes de dinero</p>
                     </div>
-                    <Button onClick={() => setIsModalOpen(true)}>
-                        + Nueva Cuenta
-                    </Button>
+                    <div className="flex gap-2">
+                        <Button variant="secondary" onClick={() => navigate('/transactions')}>
+                            Ver Transacciones
+                        </Button>
+                        <Button onClick={() => setIsModalOpen(true)}>
+                            + Nueva Cuenta
+                        </Button>
+                    </div>
                 </Card>
             </div>
 
@@ -68,6 +79,30 @@ const Dashboard = () => {
                 {accounts.length === 0 && (
                     <div className="col-span-full text-center py-10 text-gray-500 bg-gray-50 rounded-lg border-dashed border-2 border-gray-200">
                         No tienes cuentas creadas aún.
+                    </div>
+                )}
+            </div>
+
+            {/* Recent Transactions */}
+            <div className="flex justify-between items-center mt-8 mb-4">
+                <h3 className="text-xl font-bold">Actividad Reciente</h3>
+                <Button variant="ghost" onClick={() => navigate('/transactions')}>
+                    Ver todo
+                </Button>
+            </div>
+            <div className="space-y-4">
+                {transactions.length > 0 ? (
+                    transactions.map(transaction => (
+                        <TransactionItem
+                            key={transaction.id}
+                            transaction={transaction}
+                            onEdit={() => navigate('/transactions')}
+                            onDelete={() => { }}
+                        />
+                    ))
+                ) : (
+                    <div className="text-center py-10 text-gray-500 bg-gray-50 rounded-lg border-dashed border-2 border-gray-200">
+                        No hay actividad reciente.
                     </div>
                 )}
             </div>
