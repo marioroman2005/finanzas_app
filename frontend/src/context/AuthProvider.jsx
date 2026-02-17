@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import api from '../api/axios';
 import AuthContext from './AuthContext';
 
@@ -23,32 +23,30 @@ export const AuthProvider = ({ children }) => {
         checkUser();
     }, []);
 
-    const login = async (email, password) => {
+    const login = useCallback(async (email, password) => {
         const { data } = await api.post('/auth/login', { email, password });
         localStorage.setItem('token', data.token);
-        // Recuperar perfil tras login para tener los datos completos
         const profileResponse = await api.get('/auth/profile');
         setUser(profileResponse.data);
-    };
+    }, []);
 
-    const register = async (email, password) => {
+    const register = useCallback(async (email, password) => {
         await api.post('/auth/register', { email, password });
-        // Iniciar sesión automáticamente tras el registro exitoso
         await login(email, password);
-    };
+    }, [login]);
 
-    const logout = () => {
+    const logout = useCallback(() => {
         localStorage.removeItem('token');
         setUser(null);
-    };
+    }, []);
 
-    const value = {
+    const value = useMemo(() => ({
         user,
         login,
         register,
         logout,
         loading,
-    };
+    }), [user, loading, login, register, logout]);
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

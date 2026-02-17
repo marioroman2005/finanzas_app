@@ -12,21 +12,25 @@ const Dashboard = () => {
     const [balance, setBalance] = useState([]);
     const [accounts, setAccounts] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [refreshKey, setRefreshKey] = useState(0);
 
-    const fetchData = useCallback(async () => {
-        try {
-            const balanceRes = await api.get('/dashboard/balance');
-            setBalance(balanceRes.data);
-            const accountsRes = await api.get('/accounts');
-            setAccounts(accountsRes.data);
-        } catch (error) {
-            console.error('Error fetching dashboard data:', error);
-        }
+    const handleRefresh = useCallback(() => {
+        setRefreshKey(prev => prev + 1);
     }, []);
 
     useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const balanceRes = await api.get('/dashboard/balance');
+                setBalance(balanceRes.data);
+                const accountsRes = await api.get('/accounts');
+                setAccounts(accountsRes.data);
+            } catch (error) {
+                console.error('Error fetching dashboard data:', error);
+            }
+        };
         fetchData();
-    }, [fetchData]);
+    }, [refreshKey]);
 
     const totalBalance = balance.reduce((acc, curr) => acc + Number(curr.total), 0);
 
@@ -71,7 +75,7 @@ const Dashboard = () => {
             {isModalOpen && (
                 <CreateAccountModal
                     onClose={() => setIsModalOpen(false)}
-                    onSuccess={fetchData}
+                    onSuccess={handleRefresh}
                 />
             )}
         </div>
