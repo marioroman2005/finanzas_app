@@ -121,6 +121,27 @@ El proyecto sigue una arquitectura MVC (Modelo-Vista-Controlador) en el backend 
     │   └── main.jsx       # Punto de entrada
 ```
 
+## Galería
+
+<div align="center">
+  <img src="frontend/src/assets/Screenshots/panel.png" alt="Dashboard Principal" width="800"/>
+  <p><em>Dashboard Principal</em></p>
+</div>
+
+<div align="center" style="display: flex; justify-content: space-between;">
+  <img src="frontend/src/assets/Screenshots/Login.png" alt="Login" width="48%"/>
+  <img src="frontend/src/assets/Screenshots/Registro.png" alt="Registro" width="48%"/>
+</div>
+
+<div align="center" style="display: flex; justify-content: space-between; margin-top: 20px;">
+  <img src="frontend/src/assets/Screenshots/cuentas.png" alt="Cuentas" width="48%"/>
+  <img src="frontend/src/assets/Screenshots/transacciones.png" alt="Transacciones" width="48%"/>
+</div>
+
+<div align="center" style="display: flex; justify-content: center; margin-top: 20px;">
+  <img src="frontend/src/assets/Screenshots/categorias.png" alt="Categorías" width="80%"/>
+</div>
+
 ## Contribución
 
 Las contribuciones son bienvenidas. Por favor, abre un issue primero para discutir lo que te gustaría cambiar.
