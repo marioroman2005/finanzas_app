@@ -125,6 +125,4 @@ El proyecto sigue una arquitectura MVC (Modelo-Vista-Controlador) en el backend 
 
 Las contribuciones son bienvenidas. Por favor, abre un issue primero para discutir lo que te gustaría cambiar.
 
-## Licencia
 
-Este proyecto está bajo la Licencia ISC.
