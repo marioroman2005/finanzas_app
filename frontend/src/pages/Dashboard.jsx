@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
-import Header from '../components/layout/Header';
+
+
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import api from '../api/axios';
@@ -10,7 +10,6 @@ import CreateAccountModal from '../components/accounts/CreateAccountModal';
 import TransactionItem from '../components/transactions/TransactionItem';
 
 const Dashboard = () => {
-    const { user, logout } = useAuth();
     const navigate = useNavigate();
     const [balance, setBalance] = useState([]);
     const [accounts, setAccounts] = useState([]);
@@ -42,7 +41,6 @@ const Dashboard = () => {
 
     return (
         <div className="container mx-auto p-4">
-            <Header user={user} onLogout={logout} />
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
                 {/* Balance Total Card */}

@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react';
-import { useAuth } from '../context/AuthContext';
-import Header from '../components/layout/Header';
+
+
 import Button from '../components/ui/Button';
 import { useTransactions } from '../context/TransactionContext'; // Fixed import
 import TransactionItem from '../components/transactions/TransactionItem'; // Fixed import
 import TransactionModal from '../components/transactions/TransactionModal'; // Fixed import
 
 const Transactions = () => {
-  const { user, logout } = useAuth();
   // Assuming useTransactions provides: transactions, loading, error, fetchTransactions, deleteTransaction
   const { transactions, loading, error, fetchTransactions, deleteTransaction } = useTransactions();
 
@@ -43,7 +42,6 @@ const Transactions = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <Header user={user} onLogout={logout} />
 
       <div className="flex justify-between items-center mt-8 mb-6">
         <h2 className="text-2xl font-bold text-gray-800">Transacciones</h2>
