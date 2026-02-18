@@ -131,6 +131,7 @@ El proyecto sigue una arquitectura MVC (Modelo-Vista-Controlador) en el backend 
 <div align="center" style="display: flex; justify-content: space-between;">
   <img src="frontend/src/assets/Screenshots/Login.png" alt="Login" width="48%"/>
   <img src="frontend/src/assets/Screenshots/Registro.png" alt="Registro" width="48%"/>
+  <p>(Datos de 10.000 usuarios inventado)</p>
 </div>
 
 <div align="center" style="display: flex; justify-content: space-between; margin-top: 20px;">
