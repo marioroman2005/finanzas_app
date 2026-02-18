@@ -1,10 +1,10 @@
-# Finanzas SaaS
+# Finanzas App
 
 Plataforma moderna para la gestión de finanzas personales, diseñada para ofrecer un control total sobre tus ingresos, gastos y cuentas bancarias.
 
 ## Descripción
 
-Finanzas SaaS es una aplicación web completa que permite a los usuarios administrar su vida financiera de manera eficiente. Construida con una arquitectura robusta y escalable, la aplicación facilita el seguimiento de transacciones, la clasificación de gastos y la visualización del estado financiero en tiempo real.
+Finanzas App es una aplicación web completa que permite a los usuarios administrar su vida financiera de manera eficiente. Construida con una arquitectura robusta y escalable, la aplicación facilita el seguimiento de transacciones, la clasificación de gastos y la visualización del estado financiero en tiempo real.
 
 ## Características Principales
 
@@ -45,8 +45,8 @@ Sigue estos pasos para configurar el proyecto localmente.
 ### 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/tu-usuario/finanzas-saas.git
-cd finanzas-saas
+git clone https://github.com/tu-usuario/finanzas-app.git
+cd finanzas-app
 ```
 
 ### 2. Configuración del Backend
@@ -58,10 +58,10 @@ cd backend
 npm install
 ```
 
-Crea una base de datos en PostgreSQL llamada `saas_finanzas` y ejecuta el script de esquema para crear las tablas necesarias:
+Crea una base de datos en PostgreSQL llamada `app_finanzas` y ejecuta el script de esquema para crear las tablas necesarias:
 
 ```bash
-psql -U postgres -d saas_finanzas -f schema.sql
+psql -U postgres -d app_finanzas -f schema.sql
 ```
 
 Configura las variables de entorno. Crea un archivo `.env` en la carpeta `backend` basándote en `.env.example`:
@@ -69,7 +69,7 @@ Configura las variables de entorno. Crea un archivo `.env` en la carpeta `backen
 ```env
 DB_USER=postgres
 DB_HOST=localhost
-DB_NAME=saas_finanzas
+DB_NAME=app_finanzas
 DB_PASSWORD=tu_contraseña
 DB_PORT=5432
 PORT=4000

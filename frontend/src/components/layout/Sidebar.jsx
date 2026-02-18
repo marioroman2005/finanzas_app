@@ -19,7 +19,7 @@ const Sidebar = () => {
           <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold">
             C
           </div>
-          <span className="font-bold text-xl tracking-tight">Finanzas_SaaS</span>
+          <span className="font-bold text-xl tracking-tight">Finanzas_App</span>
         </Link>
       </div>
 

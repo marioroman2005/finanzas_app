@@ -95,7 +95,7 @@ const Register = () => {
                         </div>
                         <h1 className="text-4xl font-bold mb-4 tracking-tight">Comienza tu viaje</h1>
                         <p className="text-indigo-100 text-lg">
-                            Más de 10,000 usuarios confían en Finanzas SaaS para optimizar sus recursos.
+                            Más de 10,000 usuarios confían en Finanzas App para optimizar sus recursos.
                         </p>
                     </div>
 
@@ -135,7 +135,7 @@ const Register = () => {
                         <span className="cursor-pointer hover:text-white">Ayuda</span>
                         <span className="cursor-pointer hover:text-white">Contacto</span>
                     </div>
-                    <span>© 2026 Finanzas SaaS</span>
+                    <span>© 2026 Finanzas App</span>
                 </div>
             </div>
         </div>
