@@ -24,6 +24,8 @@ CREATE TABLE IF NOT EXISTS accounts (
 CREATE TABLE IF NOT EXISTS categories (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     name VARCHAR(100) NOT NULL,
+    type VARCHAR(50) NOT NULL CHECK (type IN ('INCOME', 'EXPENSE')),
+    color VARCHAR(20) DEFAULT '#cccccc',
     user_id UUID REFERENCES users(id) ON DELETE SET NULL, -- NULL for global categories
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
@@ -40,13 +42,13 @@ CREATE TABLE IF NOT EXISTS transactions (
 );
 
 -- Insert Default Categories (if not exists)
-INSERT INTO categories (name, user_id) 
-SELECT 'Comida', NULL::UUID WHERE NOT EXISTS (SELECT 1 FROM categories WHERE name = 'Comida')
+INSERT INTO categories (name, type, color, user_id) 
+SELECT 'Comida', 'EXPENSE', '#EF4444', NULL::UUID WHERE NOT EXISTS (SELECT 1 FROM categories WHERE name = 'Comida')
 UNION ALL
-SELECT 'Transporte', NULL::UUID WHERE NOT EXISTS (SELECT 1 FROM categories WHERE name = 'Transporte')
+SELECT 'Transporte', 'EXPENSE', '#3B82F6', NULL::UUID WHERE NOT EXISTS (SELECT 1 FROM categories WHERE name = 'Transporte')
 UNION ALL
-SELECT 'Vivienda', NULL::UUID WHERE NOT EXISTS (SELECT 1 FROM categories WHERE name = 'Vivienda')
+SELECT 'Vivienda', 'EXPENSE', '#10B981', NULL::UUID WHERE NOT EXISTS (SELECT 1 FROM categories WHERE name = 'Vivienda')
 UNION ALL
-SELECT 'Salud', NULL::UUID WHERE NOT EXISTS (SELECT 1 FROM categories WHERE name = 'Salud')
+SELECT 'Salud', 'EXPENSE', '#F59E0B', NULL::UUID WHERE NOT EXISTS (SELECT 1 FROM categories WHERE name = 'Salud')
 UNION ALL
-SELECT 'Ocio', NULL::UUID WHERE NOT EXISTS (SELECT 1 FROM categories WHERE name = 'Ocio');
+SELECT 'Ocio', 'EXPENSE', '#8B5CF6', NULL::UUID WHERE NOT EXISTS (SELECT 1 FROM categories WHERE name = 'Ocio');
