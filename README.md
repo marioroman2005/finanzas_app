@@ -40,16 +40,47 @@ Antes de comenzar, asegúrate de tener instalado lo siguiente:
 
 ## Instalación y Configuración
 
-Sigue estos pasos para configurar el proyecto localmente.
+Puedes levantar el proyecto de dos formas: usando **Docker (Recomendado)** para una inicialización con un solo comando, o de forma manual.
 
-### 1. Clonar el repositorio
+### Opción 1: Usando Docker (Recomendado)
+
+Esta es la forma más rápida y evita tener que instalar dependencias o PostgreSQL en tu máquina local.
+
+1. **Clonar el repositorio:**
 
 ```bash
 git clone https://github.com/tu-usuario/finanzas-app.git
 cd finanzas-app
 ```
 
-### 2. Configuración del Backend
+2. **Levantar la aplicación:**
+
+Asegúrate de tener [Docker Desktop](https://www.docker.com/products/docker-desktop/) instalado y en ejecución. Luego, en la raíz del proyecto, ejecuta:
+
+```bash
+docker compose up --build
+```
+
+Esto levantará automáticamente la base de datos (y la inicializará con las tablas necesarias), el backend y el frontend. 
+
+3. **Acceder a la aplicación:**
+Abre tu navegador y entra a: [http://localhost:5173](http://localhost:5173).
+
+Para detener la aplicación, usa `Ctrl + C` en la terminal o ejecuta `docker compose down`.
+
+
+### Opción 2: Instalación Manual
+
+Sigue estos pasos si prefieres ejecutar los servicios localmente sin Docker.
+
+#### 1. Clonar el repositorio
+
+```bash
+git clone https://github.com/tu-usuario/finanzas-app.git
+cd finanzas-app
+```
+
+#### 2. Configuración del Backend
 
 Navega al directorio del backend e instala las dependencias:
 
@@ -58,10 +89,12 @@ cd backend
 npm install
 ```
 
-Crea una base de datos en PostgreSQL llamada `app_finanzas` y ejecuta el script de esquema para crear las tablas necesarias:
+Crea una base de datos en PostgreSQL llamada `app_finanzas` y ejecuta los scripts para crear las tablas y datos iniciales:
 
 ```bash
 psql -U postgres -d app_finanzas -f schema.sql
+psql -U postgres -d app_finanzas -f insert_categories.sql
+psql -U postgres -d app_finanzas -f seed_data.sql
 ```
 
 Configura las variables de entorno. Crea un archivo `.env` en la carpeta `backend` basándote en `.env.example`:
@@ -82,7 +115,7 @@ Inicia el servidor de desarrollo:
 npm run dev
 ```
 
-### 3. Configuración del Frontend
+#### 3. Configuración del Frontend
 
 Abre una nueva terminal, navega al directorio del frontend e instala las dependencias:
 
